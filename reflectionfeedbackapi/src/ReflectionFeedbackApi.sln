@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30104.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReflectionFeedback.Api", "ReflectionFeedback.Api\ReflectionFeedback.Api.csproj", "{9E22BFB2-A8B4-4AA3-A604-C786F84AF8EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectionFeedback.Tests", "ReflectionFeedback.Tests\ReflectionFeedback.Tests.csproj", "{E7857862-EC43-4E63-8654-D9F4127D6CEC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E22BFB2-A8B4-4AA3-A604-C786F84AF8EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E22BFB2-A8B4-4AA3-A604-C786F84AF8EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E22BFB2-A8B4-4AA3-A604-C786F84AF8EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E22BFB2-A8B4-4AA3-A604-C786F84AF8EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7857862-EC43-4E63-8654-D9F4127D6CEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7857862-EC43-4E63-8654-D9F4127D6CEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7857862-EC43-4E63-8654-D9F4127D6CEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7857862-EC43-4E63-8654-D9F4127D6CEC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {50CC1B53-B659-4235-805C-000247882EBC}
+	EndGlobalSection
+EndGlobal

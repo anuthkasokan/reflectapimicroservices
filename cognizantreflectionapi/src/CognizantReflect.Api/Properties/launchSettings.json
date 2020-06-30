@@ -1,0 +1,61 @@
+﻿{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:16500",
+      "sslPort": 0
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "ping",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "REFLECTUSER_SERVICE_HOST": "http://40.124.104.149/users/userdetails/",
+        "REFLECTFEEDBACK_SERVICE_HOST": "http://40.124.104.149/feedback/feedback/",
+        "EMAIL_SERVICE_HOST": "http://40.124.104.149/email/emailservice/"
+      }
+    },
+    "CognizantReflect.Api": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "ping",
+      "applicationUrl": "http://localhost:5000",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "MONGO_CONNECTIONSTRING": "#",
+        "MONGO_DATABASE_NAME": "cognizantreflectquiz",
+        "CURIOUS_QUIZ_COLLECTION": "curiousquiz",
+        "CURIOUS_QUIZ_ATTEMPTS_COLLECTION": "curiousquiz_attempts",
+        "BLIND_SPOT_QUIZ_COLLECTION": "blindspotquiz",
+        "BLIND_SPOT_QUIZ_ATTEMPTS_COLLECTION": "blindspotquiz_attempts",
+        "BLIND_SPOT_QUIZ_CWREPLY_COLLECTION": "blindspotquiz_cwreply",
+        "GROWTH_MINDSET_QUIZ_COLLECTION": "growthmindsetquiz",
+        "GROWTH_MINDSET_QUIZ_ATTEMPTS_COLLECTION": "growthmindsetquiz_attempts",
+        "MAKING_TIME_FOR_ME_QUIZ_COLLECTION": "makingtimeformequiz",
+        "MAKING_TIME_FOR_ME_QUIZ_ATTEMPTS_COLLECTION": "makingtimeformequiz_attempts",
+        "PRODUCTIVITY_ZONE_QUIZ_COLLECTION": "productivityzonequiz",
+        "PRODUCTIVITY_ZONE_QUIZ_ATTEMPTS_COLLECTION": "productivityzonequiz_attempts",
+        "STORY_TELLING_FOR_IMPACT_QUIZ_COLLECTION": "storytellingforimpactquiz",
+        "STORY_TELLING_FOR_IMPACT_QUIZ_ATTEMPTS_COLLECTION": "storytellingforimpactquiz_attempts",
+        "CONTINUOUS_LEARNING_ASSESSMENT_QUIZ_COLLECTION": "continuouslearningassessmentquiz",
+        "CONTINUOUS_LEARNING_ASSESSMENT_QUIZ_ATTEMPTS_COLLECTION": "continuouslearningassessmentquiz_attempts",
+        "REFELCTION_TOOL_QUIZ_COLLECTION": "reflectiontoolquiz",
+        "REFLECTION_TOOL_QUIZ_ATTEMPTS_COLLECTION": "reflectiontoolquiz_attempts",
+        "LEARNING_MYTHS_QUIZ_COLLECTION": "learningmythsquiz",
+        "LEARNING_MYTHS_QUIZ_ATTEMPTS_COLLECTION": "learningmythsquiz_attempts",
+        "CULTURE_OBSERVATION_TOOL_QUIZ_COLLECTION": "cultureobservationtoolquiz",
+        "CULTURE_OBSERVATION_TOOL_QUIZ_ATTEMPTS_COLLECTION": "cultureobservationtoolquiz_attempts",
+        "CULTURE_OBSERVATION_TOOL_SCORING_COLLECTION": "cultureobservationtoolquiz_scoring",
+        "ERROR_LOGS_COLLECTION": "errorlogs",
+        "REFLECTUSER_SERVICE_HOST": "http://40.124.104.149/users/userdetails/",
+        "REFLECTFEEDBACK_SERVICE_HOST": "http://40.124.104.149/feedback/feedback/",
+        "EMAIL_SERVICE_HOST": "http://40.124.104.149/email/emailservice/"
+      }
+    }
+  }
+}

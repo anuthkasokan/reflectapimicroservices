@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reflectemail-deployment
+spec:
+  selector:
+    matchLabels:
+      app: reflectemail-pod
+  template:
+    metadata:
+      labels:
+        app: reflectemail-pod
+    spec:
+      nodeName: aks-agentpool-21451765-vmss000001
+      containers:
+      - name: reflectemail-container
+        image: reflectcontainerregistry.azurecr.io/reflectemail:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "128m"
+        ports:
+        - containerPort: 80

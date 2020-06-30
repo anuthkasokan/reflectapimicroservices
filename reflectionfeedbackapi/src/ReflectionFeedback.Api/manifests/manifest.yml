@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reflectfeedback-deployment
+spec:
+  selector:
+    matchLabels:
+      app: reflectfeedback-pod
+  template:
+    metadata:
+      labels:
+        app: reflectfeedback-pod
+    spec:
+      nodeName: aks-agentpool-21451765-vmss000001
+      containers:
+      - name: reflectfeedback-container
+        image: reflectcontainerregistry.azurecr.io/reflectfeedback:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "128m"
+        ports:
+        - containerPort: 80

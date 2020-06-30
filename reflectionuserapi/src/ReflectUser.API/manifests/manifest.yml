@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reflectuser-deployment
+spec:
+  selector:
+    matchLabels:
+      app: reflectuser-pod
+  template:
+    metadata:
+      labels:
+        app: reflectuser-pod
+    spec:
+      nodeName: aks-agentpool-21451765-vmss000000
+      containers:
+      - name: reflectuser-container
+        image: reflectcontainerregistry.azurecr.io/reflectuser:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "128m"
+        ports:
+        - containerPort: 80

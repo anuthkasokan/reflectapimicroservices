@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: reflectfeedback
+spec:
+  type: ClusterIP
+  selector:
+    app: reflectfeedback-pod
+  ports:
+  - port: 80

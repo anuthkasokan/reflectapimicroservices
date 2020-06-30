@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cognizantreflect-deployment
+spec:
+  selector:
+    matchLabels:
+      app: cognizantreflect-pod
+  template:
+    metadata:
+      labels:
+        app: cognizantreflect-pod
+    spec:
+      nodeName: aks-agentpool-21451765-vmss000000
+      containers:
+      - name: cognizantreflect-container
+        image: reflectcontainerregistry.azurecr.io/cognizantreflect:latest
+        env:
+          - name: REFLECTFEEDBACK_SERVICE_HOST
+            value: http://40.124.104.149/feedback/feedback/
+          - name: REFLECTUSER_SERVICE_HOST
+            value: http://40.124.104.149/users/userdetails/
+          - name: EMAIL_SERVICE_HOST
+            value: http://40.124.104.149/email/emailservice/
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "256m"
+        ports:
+        - containerPort: 80
