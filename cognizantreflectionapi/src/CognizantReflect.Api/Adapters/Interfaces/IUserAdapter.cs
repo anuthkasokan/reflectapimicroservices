@@ -8,6 +8,10 @@ namespace CognizantReflect.Api.Adapters.Interfaces
 {
     internal interface IUserAdapter
     {
-        List<UserDetails> GetUserList();
+        List<UserDetails> GetUserList(string userId = "", string emailId = "");
+
+        UserDetails GetloggedUser(string userId = "", string emailId = "");
+
+        List<UserDetails> GetUsersByRole(string role);
     }
 }

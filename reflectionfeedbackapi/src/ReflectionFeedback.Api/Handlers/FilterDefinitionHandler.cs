@@ -19,7 +19,7 @@ namespace ReflectionFeedback.Api.Handlers
             => Builders<Feedback>.Filter.And(FilterFeedbacksByPendingStatus(), FilterFeedbacksByType());
 
         internal static FilterDefinition<Feedback> FilterFeedbacksByUserAndStatus(string userid)
-            => Builders<Feedback>.Filter.And(FilterFeedbacksByTypeAndStatus(),FilterAssignedFeedbacksByUser(userid));
+            => Builders<Feedback>.Filter.And(FilterFeedbacksByPendingStatus(),FilterAssignedFeedbacksByUser(userid));
 
         internal static FilterDefinition<Feedback> FilterFeedBackByUser(string userid)
             => Builders<Feedback>.Filter.Eq(f => f.userid, userid);

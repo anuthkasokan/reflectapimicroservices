@@ -130,12 +130,12 @@ namespace ReflectionFeedback.Api.BusinessLogics
 
             if (feedbacks.Count > start && feedbacks.Count < (start + count))
             {
-                return feedbacks.GetRange(start, (feedbacks.Count - start));
+                return feedbacks.OrderByDescending(x=>x.id).ToList().GetRange(start, (feedbacks.Count - start));
             }
 
             if (feedbacks.Count > start)
             {
-                return feedbacks.GetRange(start, count);
+                return feedbacks.OrderByDescending(x => x.id).ToList().GetRange(start, count);
             }
 
             return new List<Feedback>();

@@ -50,10 +50,10 @@ namespace CognizantReflect.Api.Adapters
                     type = Common.StringNullCheck(typeValue),
                     options = new Optionss
                     {
-                        a = Common.StringNullCheck(optionsValue[0]),
-                        b = Common.StringNullCheck(optionsValue[1]),
-                        c = Common.StringNullCheck(optionsValue[2]),
-                        d = Common.StringNullCheck(optionsValue[3])
+                        a = Common.StringNullCheck(optionsValue?[0]),
+                        b = Common.StringNullCheck(optionsValue?[1]),
+                        c = Common.StringNullCheck(optionsValue?[2]),
+                        d = Common.StringNullCheck(optionsValue?[3])
                     },
                     updatetimestamp = Common.StringNullCheck(updatetimestampValue)
                 });

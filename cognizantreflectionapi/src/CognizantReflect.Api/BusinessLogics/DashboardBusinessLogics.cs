@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using CognizantReflect.Api.Adapters.Interfaces;
 using CognizantReflect.Api.BusinessLogics.Interfaces;
 using CognizantReflect.Api.Models.Dashboard;
+using CognizantReflect.Api.Models.FeedbackService;
 using CognizantReflect.Api.Models.UserService;
 
 namespace CognizantReflect.Api.BusinessLogics
@@ -13,11 +14,13 @@ namespace CognizantReflect.Api.BusinessLogics
     {
         private readonly IDashboardAdapter _dashboardAdapter;
         private readonly IUserAdapter _userAdapter;
+        private readonly IFeedbackAdapter _feedbackAdapter;
 
-        public DashboardBusinessLogics(IDashboardAdapter dashboardAdapter,IUserAdapter userAdapter)
+        public DashboardBusinessLogics(IDashboardAdapter dashboardAdapter,IUserAdapter userAdapter,IFeedbackAdapter feedbackAdapter)
         {
             _dashboardAdapter = dashboardAdapter;
             _userAdapter = userAdapter;
+            _feedbackAdapter = feedbackAdapter;
         }
 
         public int[][] GetDetailsForScoreGraphChart(string userid)
@@ -626,5 +629,74 @@ namespace CognizantReflect.Api.BusinessLogics
 
             };
         }
+
+        public List<UserDetails> GetUserDetails(string userId="")
+        {
+            return _userAdapter.GetUserList(userId);
+        }
+
+        public UserDetails GetLoggedUserDetails(string userId = "",string emailId="")
+        {
+            return _userAdapter.GetloggedUser(userId, emailId);
+        }
+
+        public List<UserDetails> GetUsersByRole(string role)
+        {
+            return _userAdapter.GetUsersByRole(role);
+        }
+
+        public void StoreFeedbackQuestions(Feedback feedback)
+        {
+            _feedbackAdapter.SaveFeedbackQuestion(feedback);
+        }
+
+        public List<Feedback> GetFeedbackDetailsForAdmin()
+        {
+            return _feedbackAdapter.GetFeedbackDetailsForAdmin();
+        }
+
+        public void SaveFeedbackReply(FeedbackReply feedbackReply)
+        {
+
+            _feedbackAdapter.SaveFeedbackReply(feedbackReply);
+        }
+
+        public void UpdateOrAddFeedbacksByAdmin(List<Feedback> feedbacks)
+        {
+            
+            _feedbackAdapter.UpdateOrAddFeedbacksByAdmin(feedbacks);
+
+        }
+
+        public void UpdateFeedbackStatus(long id)
+        {
+            _feedbackAdapter.UpdateFeedbackStatus(id);
+        }
+
+        public void SaveBlindSpotNotification(BlindSpotNotification blindSpotNotification)
+        {
+            _feedbackAdapter.SaveBlindSpotNotification(blindSpotNotification);
+        }
+
+        public List<Feedback> GetNotificationListForUser(string userid, int start, int count)
+        {
+           return _feedbackAdapter.GetNotificationListForUser(userid, start, count);
+        }
+
+        public List<Feedback> GetAdminComments(string userid)
+        {
+            return _feedbackAdapter.GetAdminComments(userid);
+        }
+
+        public long GetNotificationCount(string userid)
+        {
+            return _feedbackAdapter.GetNotificationsCount(userid);
+        }
+
+        public void DeleteFeedback(long id)
+        {
+            _feedbackAdapter.DeleteFeedback(id);
+        }
+
     }
 }

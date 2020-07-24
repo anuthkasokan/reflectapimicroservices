@@ -1,6 +1,6 @@
 ﻿namespace CognizantReflect.Api.Models.UserService
 {
-    internal class UserDetails
+    public class UserDetails
     {
         public int Id { get; set; }
         public string UserId { get; set; }

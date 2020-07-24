@@ -35,21 +35,24 @@ namespace CognizantReflect.Api.BusinessLogics
 
             foreach (var coWorker in response.selectedcoWorkers)
             {
-                lastRecordCount++;
-                BlindSpotCoWorkerReply coWorkerReply = new BlindSpotCoWorkerReply
+                if(coWorker != null)
                 {
-                    id = lastRecordCount,
-                    attemptid = response.id,
-                    userid = coWorker,
-                    replytimestamp = DateTime.Now.ToString(CultureInfo.InvariantCulture),
-                    selectedadjectives = new string[] { }
-                };
+                    lastRecordCount++;
+                    BlindSpotCoWorkerReply coWorkerReply = new BlindSpotCoWorkerReply
+                    {
+                        id = lastRecordCount,
+                        attemptid = response.id,
+                        userid = coWorker,
+                        replytimestamp = DateTime.Now.ToString(CultureInfo.InvariantCulture),
+                        selectedadjectives = new string[] { }
+                    };
 
-                _blindSpotAdapter.SaveBlindSpotCoWorkerResponse(coWorkerReply);
+                    _blindSpotAdapter.SaveBlindSpotCoWorkerResponse(coWorkerReply);
+                }
 
             }
 
-            BlindSpotNotification notification = new BlindSpotNotification() { userid = response.userid, coworkerid = response.selectedcoWorkers.ToList()};
+            BlindSpotNotification notification = new BlindSpotNotification() { userid = response.userid, coworkerid = response.selectedcoWorkers.Where(x=>x != null)?.ToList()};
             _feedbackAdapter.SendNotification(notification);
         }
 

@@ -32,13 +32,19 @@ namespace CognizantReflect.Api.Adapters
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public List<UserDetails> GetUserList()
+        public List<UserDetails> GetUserList(string userId="",string emailId="")
         {
-            var token = _httpContextAccessor.HttpContext.GetTokenAsync("access_token")?.Result;
+            var token = _httpContextAccessor?.HttpContext?.GetTokenAsync("access_token")?.Result;
+
+            string url = _config.Value.UserServiceUrl + "getUser";
+            if (userId != "")
+                url +=  "/" + userId;
+            if (emailId != "")
+                url += "/" + emailId;
 
             ServiceRequest request = new ServiceRequest
             {
-                Url = _config.Value.UserServiceUrl+ "getUser",
+                Url = url,
                 ContentType = "application/json",
                 HttpMethod = "GET",
                 AuthorizationHeader = token
@@ -51,6 +57,60 @@ namespace CognizantReflect.Api.Adapters
                 return JsonConvert.DeserializeObject<List<UserDetails>>(webResponse.Description);
             }
             
+            _log.LogError(webResponse.Description);
+
+            return new List<UserDetails>();
+        }
+
+        public UserDetails GetloggedUser(string userId = "", string emailId = "")
+        {
+            var token = _httpContextAccessor?.HttpContext?.GetTokenAsync("access_token")?.Result;
+
+            string url = _config.Value.UserServiceUrl + "getUser";
+            if (userId != "")
+                url += "/" + userId;
+            if (emailId != "")
+                url += "/" + emailId;
+
+            ServiceRequest request = new ServiceRequest
+            {
+                Url = url,
+                ContentType = "application/json",
+                HttpMethod = "GET",
+                AuthorizationHeader = token
+            };
+            var webRequest = _serviceHelper.CreateWebRequest(request);
+            BaseHttpResponse webResponse = _serviceHelper.HandleRequest(webRequest);
+
+            if (webResponse.HttpStatusCode == HttpStatusCode.OK)
+            {
+                return JsonConvert.DeserializeObject<UserDetails>(webResponse.Description);
+            }
+
+            _log.LogError(webResponse.Description);
+
+            return new UserDetails();
+        }
+
+        public List<UserDetails> GetUsersByRole(string role)
+        {
+            var token = _httpContextAccessor?.HttpContext?.GetTokenAsync("access_token")?.Result;
+
+            ServiceRequest request = new ServiceRequest
+            {
+                Url = _config.Value.UserServiceUrl + "getUsersByRole/"+role,
+                ContentType = "application/json",
+                HttpMethod = "GET",
+                AuthorizationHeader = token
+            };
+            var webRequest = _serviceHelper.CreateWebRequest(request);
+            BaseHttpResponse webResponse = _serviceHelper.HandleRequest(webRequest);
+
+            if (webResponse.HttpStatusCode == HttpStatusCode.OK)
+            {
+                return JsonConvert.DeserializeObject<List<UserDetails>>(webResponse.Description);
+            }
+
             _log.LogError(webResponse.Description);
 
             return new List<UserDetails>();

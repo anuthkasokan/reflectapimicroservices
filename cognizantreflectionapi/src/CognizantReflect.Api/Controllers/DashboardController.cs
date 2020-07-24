@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using CognizantReflect.Api.BusinessLogics.Interfaces;
 using CognizantReflect.Api.Models.Dashboard;
+using CognizantReflect.Api.Models.FeedbackService;
+using CognizantReflect.Api.Models.UserService;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -123,6 +125,93 @@ namespace CognizantReflect.Api.Controllers
         public List<QuizResultAndTimes> GetMakingTimeQuizAnswers()
         {
             return _dashboardBusinessLogics.GetMakingTimeResultAndTimes();
+        }
+
+        [HttpGet("getUser/{userid}", Name = "GetUserByUserId/EmailId")]
+        public List<UserDetails> GetUserById(string userId)
+        {
+            return _dashboardBusinessLogics.GetUserDetails(userId);
+        }
+
+        [HttpGet("getUser/{userid}/{emailid}", Name = "GetloggedUser/UserId/EmailId")]
+        public UserDetails GetLoggedUser(string userId, string emailId)
+        {
+            return _dashboardBusinessLogics.GetLoggedUserDetails(userId, emailId);
+        }
+
+        [HttpGet("getUser", Name = "GetAllUsers")]
+        public List<UserDetails> GetUserById()
+        {
+            return _dashboardBusinessLogics.GetUserDetails();
+
+        }
+
+        [HttpGet("getUsersByRole/{role}", Name = "GetUsersByRole")]
+        public List<UserDetails> GetUsersByRole(string role)
+        {
+            return _dashboardBusinessLogics.GetUsersByRole(role);
+        }
+
+        [HttpGet("getFeedbackDetailsForAdmin", Name = "GetFeedbackDetailsForAdmin")]
+        public List<Feedback> GetFeedbackDetailsForAdmin()
+        {
+            return _dashboardBusinessLogics.GetFeedbackDetailsForAdmin();
+        }
+
+        // POST: api/Feedback
+        [HttpPost("saveFeedbackQuestion", Name = "SaveFeedbackQuestion")]
+        public void SaveFeedbackQuestion(Feedback feedback)
+        {
+            _dashboardBusinessLogics.StoreFeedbackQuestions(feedback);
+        }
+
+        [HttpPost("saveFeedbackReply", Name = "SaveFeedbackReply")]
+        public void SaveFeedbackReply(FeedbackReply feedbackReply)
+        {
+            _dashboardBusinessLogics.SaveFeedbackReply(feedbackReply);
+        }
+
+        [HttpPost("updateOrAddFeedbacksByAdmin", Name = "UpdateOrAddFeedbacksByAdmin")]
+        public void UpdateOrAddFeedbacksByAdmin(List<Feedback> feedbacks)
+        {
+            _dashboardBusinessLogics.UpdateOrAddFeedbacksByAdmin(feedbacks);
+        }
+
+        [HttpPost("updateFeedbackStatus", Name = "UpdateFeedbackStatus")]
+        public void UpdateFeedbackStatus(long id)
+        {
+            _dashboardBusinessLogics.UpdateFeedbackStatus(id);
+        }
+
+
+        [HttpPost("saveBlindSpotNotification", Name = "SaveBlindSpotNotification")]
+        public void SaveBlindSpotNotification(BlindSpotNotification blindSpotNotification)
+        {
+            _dashboardBusinessLogics.SaveBlindSpotNotification(blindSpotNotification);
+        }
+
+        [HttpGet("getNotificationListForUser/{userid}/{start}/{count}", Name = "GetNotificationListForUser")]
+        public List<Feedback> GetNotificationListForUser(string userid, int start, int count)
+        {
+            return _dashboardBusinessLogics.GetNotificationListForUser(userid, start, count);
+        }
+
+        [HttpGet("getNotificationsCount/{userid}", Name = "GetNotificationsCount")]
+        public long GetNotificationsCount(string userid)
+        {
+            return _dashboardBusinessLogics.GetNotificationCount(userid);
+        }
+
+        [HttpGet("getAdminComments/{userid}", Name = "GetAdminComments")]
+        public List<Feedback> GetAdminComments(string userid)
+        {
+            return _dashboardBusinessLogics.GetAdminComments(userid);
+        }
+
+        [HttpPost("deleteFeedback", Name = "DeleteFeedback")]
+        public void DeleteFeedback(long id)
+        {
+            _dashboardBusinessLogics.DeleteFeedback(id);
         }
 
         // POST: api/Dashboard

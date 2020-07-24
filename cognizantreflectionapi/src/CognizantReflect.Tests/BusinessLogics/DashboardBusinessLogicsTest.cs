@@ -23,12 +23,13 @@ namespace CognizantReflect.Tests.BusinessLogics
     {
         private readonly Mock<IDashboardAdapter> _dashboardAdapter = new Mock<IDashboardAdapter>();
         private readonly Mock<IUserAdapter> _userAdapter = new Mock<IUserAdapter>();
+        private readonly Mock<IFeedbackAdapter> _feedbackAdapter = new Mock<IFeedbackAdapter>();
         private DashboardBusinessLogics _dashboardBusinessLogics;
 
         [SetUp]
         public void SetUp()
         {
-            _dashboardBusinessLogics = new DashboardBusinessLogics(_dashboardAdapter.Object, _userAdapter.Object);
+            _dashboardBusinessLogics = new DashboardBusinessLogics(_dashboardAdapter.Object, _userAdapter.Object, _feedbackAdapter.Object);
         }
 
 
@@ -62,7 +63,7 @@ namespace CognizantReflect.Tests.BusinessLogics
         [Test]
         public void GetDetailsForScoreGraphChart_ReturnsScoreChartArray()
         {
-            _userAdapter.Setup(x => x.GetUserList()).Returns(
+            _userAdapter.Setup(x => x.GetUserList(It.IsAny<string>(),It.IsAny<string>())).Returns(
                 new List<UserDetails>
                 {
                     new UserDetails
@@ -155,7 +156,7 @@ namespace CognizantReflect.Tests.BusinessLogics
         [Test]
         public void GetOverallPercentageOfQuizCompletion_ReturnsPercentage()
         {
-            _userAdapter.Setup(x => x.GetUserList()).Returns(
+            _userAdapter.Setup(x => x.GetUserList(It.IsAny<string>(), It.IsAny<string>())).Returns(
             new List<UserDetails>
             {
                 new UserDetails
@@ -299,7 +300,7 @@ namespace CognizantReflect.Tests.BusinessLogics
         [Test]
         public void GetCuriosityResultAndTimes_ReturnsResultAndTimes()
         {
-            _userAdapter.Setup(x => x.GetUserList()).Returns(new List<UserDetails>
+            _userAdapter.Setup(x => x.GetUserList(It.IsAny<string>(), It.IsAny<string>())).Returns(new List<UserDetails>
             {
                 new UserDetails
                 {
@@ -316,7 +317,7 @@ namespace CognizantReflect.Tests.BusinessLogics
         [Test]
         public void GetGrowthMindsetResultAndTimes_ReturnsResultsAndTimes()
         {
-            _userAdapter.Setup(x => x.GetUserList()).Returns(new List<UserDetails>
+            _userAdapter.Setup(x => x.GetUserList(It.IsAny<string>(), It.IsAny<string>())).Returns(new List<UserDetails>
             {
                 new UserDetails
                 {
@@ -333,7 +334,7 @@ namespace CognizantReflect.Tests.BusinessLogics
         [Test]
         public void GetMakingTimeResultAndTimes_ReturnsResultAndTimes()
         {
-            _userAdapter.Setup(x => x.GetUserList()).Returns(new List<UserDetails>
+            _userAdapter.Setup(x => x.GetUserList(It.IsAny<string>(), It.IsAny<string>())).Returns(new List<UserDetails>
             {
                 new UserDetails
                 {

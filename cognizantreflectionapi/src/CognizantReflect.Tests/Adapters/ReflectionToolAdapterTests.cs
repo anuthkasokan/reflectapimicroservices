@@ -53,5 +53,68 @@ namespace CognizantReflect.Tests.Adapters
             _reflectionToolQuizAdapter.SaveReflectionToolQuizAttempt(request);
             _mokreflectionToolQuizAttempt.Verify(a => a.InsertAll(It.IsAny<List<ReflectionToolQuizAttempt>>(), It.IsAny<string>()));
         }
+
+        [Test]
+        public void GetLastInsertedReflectionQuizIdTest()
+        {
+            var request = new List<ReflectionToolQuizAttempt>();
+            _mokreflectionToolQuizAttempt.Setup(a => a.GetData(It.IsAny<FilterDefinition<ReflectionToolQuizAttempt>>(), It.IsAny<string>()));
+
+            _reflectionToolQuizAdapter = new ReflectionToolAdapter(_mokreflectionToolQuiz.Object, _mokreflectionToolQuizAttempt.Object, _settings.Object);
+
+            _reflectionToolQuizAdapter.GetLastInsertedReflectionQuizId();
+            _mokreflectionToolQuizAttempt.Verify(a => a.GetData(It.IsAny<FilterDefinition<ReflectionToolQuizAttempt>>(), It.IsAny<string>()));
+        }
+
+        [Test]
+        public void GetAttemptCountForReflectionToolQuizTest()
+        {
+            var response = new List<ReflectionToolQuizAttempt>
+            {
+                new ReflectionToolQuizAttempt { attemptcount = 1 }
+            };
+            _mokreflectionToolQuizAttempt.Setup(a => a.GetData(It.IsAny<FilterDefinition<ReflectionToolQuizAttempt>>(), It.IsAny<string>())).Returns(response);
+
+            _reflectionToolQuizAdapter = new ReflectionToolAdapter(_mokreflectionToolQuiz.Object, _mokreflectionToolQuizAttempt.Object, _settings.Object);
+
+            _reflectionToolQuizAdapter.GetAttemptCountForReflectionToolQuiz("");
+            _mokreflectionToolQuizAttempt.Verify(a => a.GetData(It.IsAny<FilterDefinition<ReflectionToolQuizAttempt>>(), It.IsAny<string>()));
+        }
+
+        [Test]
+        public void GetReflectionToolAttemptsTest()
+        {
+            var request = new List<ReflectionToolQuizAttempt>();
+            _mokreflectionToolQuizAttempt.Setup(a => a.GetData(It.IsAny<FilterDefinition<ReflectionToolQuizAttempt>>(), It.IsAny<string>()));
+
+            _reflectionToolQuizAdapter = new ReflectionToolAdapter(_mokreflectionToolQuiz.Object, _mokreflectionToolQuizAttempt.Object, _settings.Object);
+
+            _reflectionToolQuizAdapter.GetReflectionToolAttempts("",1);
+            _mokreflectionToolQuizAttempt.Verify(a => a.GetData(It.IsAny<FilterDefinition<ReflectionToolQuizAttempt>>(), It.IsAny<string>()));
+        }
+
+        [Test]
+        public void GetLatestAttemptByUserTest()
+        {
+            var request = new List<ReflectionToolQuizAttempt>();
+            _mokreflectionToolQuizAttempt.Setup(a => a.GetData(It.IsAny<FilterDefinition<ReflectionToolQuizAttempt>>(), It.IsAny<string>()));
+
+            _reflectionToolQuizAdapter = new ReflectionToolAdapter(_mokreflectionToolQuiz.Object, _mokreflectionToolQuizAttempt.Object, _settings.Object);
+
+            _reflectionToolQuizAdapter.GetLatestAttemptByUser("");
+            _mokreflectionToolQuizAttempt.Verify(a => a.GetData(It.IsAny<FilterDefinition<ReflectionToolQuizAttempt>>(), It.IsAny<string>()));
+        }
+
+        [Test]
+        public void GetLatestAttemptIdTest()
+        {
+            var request = new List<ReflectionToolQuizAttempt>();
+            _mokreflectionToolQuizAttempt.Setup(a => a.GetData(It.IsAny<FilterDefinition<ReflectionToolQuizAttempt>>(), It.IsAny<string>()));
+
+            _reflectionToolQuizAdapter = new ReflectionToolAdapter(_mokreflectionToolQuiz.Object, _mokreflectionToolQuizAttempt.Object, _settings.Object);
+
+            _reflectionToolQuizAdapter.GetLatestAttemptId();
+            _mokreflectionToolQuizAttempt.Verify(a => a.GetData(It.IsAny<FilterDefinition<ReflectionToolQuizAttempt>>(), It.IsAny<string>()));
+        }
     }
 }

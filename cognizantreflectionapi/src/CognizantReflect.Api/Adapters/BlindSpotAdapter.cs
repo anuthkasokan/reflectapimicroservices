@@ -155,7 +155,7 @@ namespace CognizantReflect.Api.Adapters
         public long GetLastInsertedAttemptId()
         {
             return _blindSpotAttemptsMongoHelper.GetData(FilterDefinition<BlindSpotQuizAttempts>.Empty,
-                _blindSpotAttemptCollection)?.OrderByDescending(x=>x.attemptcount).FirstOrDefault()
+                _blindSpotAttemptCollection)?.OrderByDescending(x=>x.id).FirstOrDefault()
                 ?.id ?? 0;
         }
 

@@ -128,7 +128,7 @@ namespace CognizantReflect.Api.BusinessLogics
 
                 return HttpStatusCode.OK;
             }
-            catch(Exception ex)
+            catch
             {
                 return HttpStatusCode.InternalServerError;
             }
